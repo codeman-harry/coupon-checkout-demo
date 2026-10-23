@@ -57,7 +57,7 @@ function Start-Demo {
     }
     $build = (& git -C $demoRoot rev-parse HEAD 2>$null)
     if (-not $build) { $build = 'working-tree' }
-    $process = Start-Process -FilePath $pythonExecutable -ArgumentList @(('"{0}"' -f $serverScript), '--port', $Port, '--build', $build) -WorkingDirectory $demoRoot -WindowStyle Hidden -RedirectStandardOutput (Join-Path $runtimeDirectory 'stdout.log') -RedirectStandardError (Join-Path $runtimeDirectory 'stderr.log') -PassThru
+    $process = Start-Process -FilePath $pythonExecutable -ArgumentList @('-X', 'utf8', ('"{0}"' -f $serverScript), '--port', $Port, '--build', $build) -WorkingDirectory $demoRoot -WindowStyle Hidden -RedirectStandardOutput (Join-Path $runtimeDirectory 'stdout.log') -RedirectStandardError (Join-Path $runtimeDirectory 'stderr.log') -PassThru
     [System.IO.File]::WriteAllText($pidFile, [string]$process.Id)
     for ($attempt = 0; $attempt -lt 30; $attempt++) {
         $health = Get-DemoHealth
@@ -84,7 +84,7 @@ switch ($Action) {
     'logs' { Get-Content -LiteralPath (Join-Path $runtimeDirectory 'stdout.log'), (Join-Path $runtimeDirectory 'stderr.log') -Tail 40 -ErrorAction SilentlyContinue }
     'reset' {
         Stop-Demo
-        & $pythonExecutable $serverScript --reset-data
+        & $pythonExecutable -X utf8 $serverScript --reset-data
         if ($LASTEXITCODE -ne 0) { throw '数据重置失败。' }
         Start-Demo
     }
