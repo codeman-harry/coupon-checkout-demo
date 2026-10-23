@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>拾光商店 · 优惠券结算</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="拾光商店首页"><span class="brand-mark">拾</span><span>拾光商店<small>SHIGUANG GOODS</small></span></a>
+    <nav aria-label="主导航"><a href="/" class="nav-link">选购商品</a><a href="/orders" class="nav-link" data-testid="order-history-link">订单记录 <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main>
+    <div class="page-intro"><div class="eyebrow">EVERYDAY, A LITTLE BETTER</div><h1 id="page-title">把喜欢的日常，带回家。</h1><p id="page-subtitle">选一件好物，用一点优惠，开启今天的小确幸。</p></div>
+    <section id="checkout-view" aria-label="商品结算">
+      <div class="checkout-layout">
+        <article class="product-card">
+          <div class="product-art" aria-label="奶油白随行杯插画" role="img"><span class="art-label">YOUR DAILY COMPANION</span><div class="art-orbit"></div><div class="cup-shadow"></div><div class="cup"><div class="cup-lid"></div><div class="cup-wordmark">slow<br>days.</div><div class="cup-base"></div></div><span class="art-caption">给忙碌的日子，留一点温度。</span></div>
+          <div class="product-info"><div><span class="pill">日常精选</span><h2>拾光 · 轻量随行杯</h2><p>奶油白 / 400 ml / 一杯刚刚好的陪伴</p></div><div class="unit-price">¥<strong>100.00</strong><small>/ 件</small></div></div>
+          <div class="product-notes"><span>✓ 轻盈便携</span><span>✓ 温柔配色</span><span>✓ 适合每一天</span></div>
+        </article>
+        <section class="summary-card" aria-labelledby="summary-title">
+          <div class="section-top"><h2 id="summary-title">结算清单</h2><button id="reset-checkout" class="text-button" type="button" data-testid="reset-checkout">重新开始</button></div>
+          <div class="field-row"><label for="quantity">购买数量 <small>每次可购买 1～10 件</small></label><div class="stepper"><button type="button" id="decrease-quantity" aria-label="减少数量">−</button><input id="quantity" data-testid="quantity" type="number" min="1" max="10" step="1" value="1" inputmode="decimal" aria-describedby="quantity-error"><button type="button" id="increase-quantity" aria-label="增加数量">+</button></div></div>
+          <p id="quantity-error" class="error-text" role="alert" hidden></p>
+          <div class="divider"></div>
+          <label class="field-label" for="coupon">优惠码</label><div class="coupon-entry"><input id="coupon" data-testid="coupon" type="text" maxlength="100" placeholder="输入优惠码" autocomplete="off"><button type="button" id="apply-coupon" data-testid="apply-coupon" class="secondary-button">使用</button></div>
+          <p class="coupon-hint">使用 SAVE20，商品小计满 ¥200.00 减 ¥20.00</p>
+          <div id="coupon-status" class="coupon-status" role="status" aria-live="polite" hidden></div>
+          <div id="coupon-chip" class="coupon-chip" hidden><span id="active-coupon"></span><button type="button" id="remove-coupon" data-testid="remove-coupon" aria-label="移除优惠码">移除 ×</button></div>
+          <div class="divider"></div>
+          <dl class="amounts"><div><dt>商品小计</dt><dd id="subtotal" data-testid="subtotal">¥100.00</dd></div><div><dt>优惠金额</dt><dd id="discount" data-testid="discount" class="discount">¥0.00</dd></div><div class="total-row"><dt>应付金额</dt><dd id="total" data-testid="total">¥100.00</dd></div></dl>
+          <button type="button" id="create-order" data-testid="create-order" class="primary-button" disabled>创建订单 <span aria-hidden="true">→</span></button>
+          <p id="submit-message" class="error-text" role="alert" hidden></p><p class="order-note">本地演示订单 · 无需付款</p>
+        </section>
+      </div>
+    </section>
+    <section id="order-view" class="order-card" hidden aria-labelledby="order-heading"><div class="success-mark" aria-hidden="true">✓</div><span class="eyebrow">THANK YOU FOR YOUR ORDER</span><h2 id="order-heading">订单已创建</h2><p id="order-message" class="muted">你的好物，已经安排好了。</p><div id="order-detail"></div><div class="order-actions"><a href="/" class="primary-button">继续选购</a><a href="/orders" class="secondary-button">查看订单记录</a><button type="button" id="reload-order" class="text-button">重新读取订单</button></div></section>
+    <section id="history-view" class="history-card" hidden aria-labelledby="history-heading"><div class="section-top"><h2 id="history-heading">我的订单</h2><a href="/" class="text-button">继续选购 →</a></div><div id="order-list"></div></section>
+    <div id="page-error" class="page-error" role="alert" hidden></div>
+  </main>
+  <footer><span>拾光商店 <span class="footer-dot">·</span> 认真对待每一次小小的选择</span><span>本地体验 / V1</span></footer>
+</body>
+</html>
