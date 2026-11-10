@@ -1,0 +1,20 @@
+{
+  "name": "coupon-checkout-automation-poc",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate-quickscript.mjs",
+    "adapt": "node scripts/adapt-quickscript.mjs",
+    "test": "playwright test",
+    "run:local": "node scripts/run-local.mjs",
+    "executor:setup": "node scripts/setup-local-target.mjs",
+    "executor:start": "pwsh -NoProfile -File manage-executor.ps1 start",
+    "executor:status": "pwsh -NoProfile -File manage-executor.ps1 status",
+    "executor:stop": "pwsh -NoProfile -File manage-executor.ps1 stop",
+    "test:executor": "node --test scripts/executor-protocol.test.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
+  }
+}
